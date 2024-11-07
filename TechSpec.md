@@ -47,7 +47,9 @@ position: Vector3 - Player’s current position in the world.
 equipItem(item Item)
 Behavior: Adds an item to the character's invetory.
 Movement System: Input(key). Based on the key inputted, in this case arrow keys, makes the player move according to that arrow.
-
+initiateDialogue(npcId: string)
+updateRelationship(npcId: string, value: number)
+triggerCharacterEvent(eventId: string)
 useSkill(item Item)
 Behavior: Uses the held item in whatever function it has
 
@@ -99,6 +101,7 @@ unloadScene() Removes all objects and sounds, resetting the scene for future use
 spawnPlayer (Vector3 spawnPoint): Places the player at a specific spawn point within the scene.
 addObject (WorldObject object) Adds an interactable object to the scene.
 removeObject (WorldObject object): Removes a specified object from the scene
+loadPuzzleElements(): Loads puzzles into scene
 
 playSounds
 Behavior: Plays background sounds 
