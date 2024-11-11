@@ -23,9 +23,9 @@ Interacting with objects using (e) makes the character collect the given object,
 ### Interacting (Use)
 Pressing the left or right mouse buttons will use the equipped item. For example, right click to aim the boom stick and left click to fire.
 ### Interacting (Switch Item)
-Using the scroll wheel will switch between items in the inventory. Pressing a number key will also switch to an item. Using a Teardown (game) style inventory selector.
+Using the scroll wheel will switch between items in the inventory. Pressing a number key will also switch to an item. Pressing a number key will go to the first item in that category. Then pressing it again will scroll through those items. A Teardown (game) style inventory selector will be used.
 ### Inventory
-The character can hold items in a Teardown (game) style inventory. Items are arranged together by category
+The character can hold items in a Teardown (game) style inventory. Items are arranged together by category and displayed as text on the screen.
 ![alt text](inventory.png)
 
 ## User Flow
