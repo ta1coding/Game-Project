@@ -101,10 +101,32 @@ RelationshipRequirement: The integer required for an NPC to speak this line as d
 
 
 ## Quest Class
-
 # Variables
+Boolean completed: Is the Quest completed or Not
+Double Progress: % of Quest completed
+String title: Name of Quest
+3d vector startingLocation: position in scene where quest can be initiated
+objectives: List<Objective> - List of specific objectives to complete the quest.
 
 # Methods
+startQuest(): starts the quest
+resetQuest(): resets the quest
+progressQuest(): progresses to next objective
+
+## Objective class
+# Variables
+description: string - Brief description of the task.
+isComplete: boolean - Tracks whether the objective is completed.
+location: Vector3 - Specific location associated with the objective (e.g., find an item at a certain spot).
+requiredItem: Item - An item required to complete the objective, if applicable.
+
+# Methods
+complete
+Behavior: Marks the objective as complete.
+checkCompletion
+Output: boolean - Returns true if the objective conditions are met.
+resetObjective
+Behavior: Resets the objective status for replayability.
 
 
 ## Scene Class
