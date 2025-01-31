@@ -129,6 +129,12 @@ window.addEventListener('DOMContentLoaded', function() {
             if (inputMap["ArrowRight"]) {
                 camera.rotation.y += rotationSpeed;
             }
+            if (inputMap["ArrowUp"]) {
+                camera.rotation.x -= rotationSpeed;
+            }
+            if (inputMap["ArrowDown"]) {
+                camera.rotation.x += rotationSpeed;
+            }
         });
 
         return scene;
