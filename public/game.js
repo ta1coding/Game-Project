@@ -124,10 +124,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
             // View rotation with arrow keys
             if (inputMap["ArrowLeft"]) {
-                camera.rotation.y += rotationSpeed;
+                camera.rotation.y -= rotationSpeed;
             }
             if (inputMap["ArrowRight"]) {
-                camera.rotation.y -= rotationSpeed;
+                camera.rotation.y += rotationSpeed;
             }
         });
 
