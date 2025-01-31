@@ -107,20 +107,36 @@ window.addEventListener('DOMContentLoaded', function() {
         scene.onBeforeRenderObservable.add(() => {
             const cameraSpeed = 0.15;
             const rotationSpeed = 0.03;
+            const fixedHeight = 2; // Lock camera at this height
 
             // Movement
             if (inputMap["w"] || inputMap["W"]) {
-                camera.position.addInPlace(camera.getDirection(BABYLON.Vector3.Forward()).scale(cameraSpeed));
+                const forward = camera.getDirection(BABYLON.Vector3.Forward());
+                forward.y = 0; // Remove vertical component
+                forward.normalize();
+                camera.position.addInPlace(forward.scale(cameraSpeed));
             }
             if (inputMap["s"] || inputMap["S"]) {
-                camera.position.addInPlace(camera.getDirection(BABYLON.Vector3.Forward()).scale(-cameraSpeed));
+                const backward = camera.getDirection(BABYLON.Vector3.Forward());
+                backward.y = 0; // Remove vertical component
+                backward.normalize();
+                camera.position.addInPlace(backward.scale(-cameraSpeed));
             }
             if (inputMap["a"] || inputMap["A"]) {
-                camera.position.addInPlace(camera.getDirection(BABYLON.Vector3.Right()).scale(-cameraSpeed));
+                const left = camera.getDirection(BABYLON.Vector3.Right());
+                left.y = 0; // Remove vertical component
+                left.normalize();
+                camera.position.addInPlace(left.scale(-cameraSpeed));
             }
             if (inputMap["d"] || inputMap["D"]) {
-                camera.position.addInPlace(camera.getDirection(BABYLON.Vector3.Right()).scale(cameraSpeed));
+                const right = camera.getDirection(BABYLON.Vector3.Right());
+                right.y = 0; // Remove vertical component
+                right.normalize();
+                camera.position.addInPlace(right.scale(cameraSpeed));
             }
+
+            // Force camera height to remain constant
+            camera.position.y = fixedHeight;
 
             // View rotation with arrow keys
             if (inputMap["ArrowLeft"]) {
