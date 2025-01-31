@@ -1,26 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html, body {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
+    position: fixed;
 }
 
 #renderCanvas {
     width: 100%;
     height: 100%;
     touch-action: none;
-}
-
-#instructions {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-family: Arial, sans-serif;
-    pointer-events: none;
+    outline: none;
 }

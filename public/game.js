@@ -1,35 +1,31 @@
 window.addEventListener('DOMContentLoaded', function() {
-    // Get the canvas element
     const canvas = document.getElementById('renderCanvas');
-    
-    // Create the Babylon.js engine
     const engine = new BABYLON.Engine(canvas, true);
 
-    // Create the scene
     function createScene() {
         const scene = new BABYLON.Scene(engine);
         
         // Camera setup
-        const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 1.6, 0), scene);
+        const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 2, 0), scene);
         camera.attachControl(canvas, true);
-        camera.speed = 0.2;
+        camera.speed = 0.3;
         camera.inertia = 0.7;
         camera.angularSensibility = 2000;
         
         // Light setup
-        const light = new BABYLON.PointLight('light', new BABYLON.Vector3(0, 3, 0), scene);
-        light.intensity = 0.7;
+        const light = new BABYLON.PointLight('light', new BABYLON.Vector3(0, 5, 0), scene);
+        light.intensity = 0.8;
         light.shadowEnabled = true;
 
         // Create room materials
         const wallMaterial = new BABYLON.StandardMaterial('wallMaterial', scene);
-        wallMaterial.diffuseColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+        wallMaterial.diffuseColor = new BABYLON.Color3(0.85, 0.85, 0.85);
         wallMaterial.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
 
-        // Room dimensions
-        const roomWidth = 10;
-        const roomHeight = 4;
-        const roomDepth = 10;
+        // Room dimensions (much larger)
+        const roomWidth = 100;
+        const roomHeight = 20;
+        const roomDepth = 100;
 
         // Create room walls
         const walls = [
@@ -89,7 +85,7 @@ window.addEventListener('DOMContentLoaded', function() {
         const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
         walls.forEach(wall => shadowGenerator.addShadowCaster(wall));
 
-        // WASD movement
+        // Input handling
         const inputMap = {};
         scene.actionManager = new BABYLON.ActionManager(scene);
         
@@ -109,7 +105,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
         // Before render
         scene.onBeforeRenderObservable.add(() => {
-            const cameraSpeed = 0.1;
+            const cameraSpeed = 0.15;
+            const rotationSpeed = 0.03;
+
+            // Movement
             if (inputMap["w"] || inputMap["W"]) {
                 camera.position.addInPlace(camera.getDirection(BABYLON.Vector3.Forward()).scale(cameraSpeed));
             }
@@ -122,18 +121,25 @@ window.addEventListener('DOMContentLoaded', function() {
             if (inputMap["d"] || inputMap["D"]) {
                 camera.position.addInPlace(camera.getDirection(BABYLON.Vector3.Right()).scale(cameraSpeed));
             }
+
+            // View rotation with arrow keys
+            if (inputMap["ArrowLeft"]) {
+                camera.rotation.y += rotationSpeed;
+            }
+            if (inputMap["ArrowRight"]) {
+                camera.rotation.y -= rotationSpeed;
+            }
         });
 
         return scene;
     }
 
-    // Create and run the scene
     const scene = createScene();
+    
     engine.runRenderLoop(function() {
         scene.render();
     });
 
-    // Handle window resize
     window.addEventListener('resize', function() {
         engine.resize();
     });
